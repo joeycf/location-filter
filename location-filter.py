@@ -37,14 +37,14 @@ def main():
                         lon = coord['longitude']
 
                         if bbPath.contains_point((lat, lon)):
-                            # print entry['label'] + " has coordinates (" + str(lat) + ", " + str(lon) + ")."
+                            print entry['label'] + " has coordinates (" + str(lat) + ", " + str(lon) + ")."
                             delete = False
                             break;
             if delete is True:
                 del text['text']
                 del text['time']
 
-    dumpclean(filtered_data)
+    cleanlog(filtered_data)
 
 def entityExtract(text):
     headers = {'Content-Type' : 'application/json'}
@@ -59,10 +59,25 @@ def coordinateLocation(location):
     r = requests.post('http://54.174.131.124:3003/api/geocoder/forward-geo', data=body, headers=headers)
     return r
 
+# TODO custom JSON
+# >>> m={'text':"sometext"}
+# >>> m
+# {'text': 'sometext'}
+# >>> m["mynewfield"]={'a':1,'b':{}}
+# >>> m
+# {'text': 'sometext', 'mynewfield': {'a': 1, 'b': {}}}
+# >>> m['mynewfield']['a']=[1,2,3,4]
+# >>> m
+# {'text': 'sometext', 'mynewfield': {'a': [1, 2, 3, 4], 'b': {}}}
+# >>> import json
+# >>> print json.dumps(m)
+# {"text": "sometext", "mynewfield": {"a": [1, 2, 3, 4], "b": {}}}
+# >>>
 def buildJson():
+
     return
 
-def dumpclean(obj):
+def cleanlog(obj):
     if type(obj) == dict:
         for k, v in obj.items():
             if hasattr(v, '__iter__'):
