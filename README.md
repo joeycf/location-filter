@@ -1,6 +1,6 @@
 # Tweet Extractor/Filter
 
-Takes a JSON and filters based on configured area. 
+Takes a JSON and filters based on configured area. Utilizes Watchman
 
 ## JSON Input Format
 
